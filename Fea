@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Un regalo para ti 🌸</title>
+  <style>
+    body {
+      background-color: #fce4ec;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      margin: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+    .bouquet {
+      text-align: center;
+      font-size: 70px;
+      animation: bloom 2s ease-in-out infinite alternate;
+    }
+    h1 {
+      color: #ad1457;
+      margin-top: 20px;
+      font-size: 24px;
+    }
+    p {
+      color: #880e4f;
+      font-size: 16px;
+    }
+    @keyframes bloom {
+      0% { transform: scale(1) rotate(-2deg); }
+      100% { transform: scale(1.08) rotate(2deg); }
+    }
+  </style>
+</head>
+<body>
+  <div class="bouquet">💐</div>
+  <h1>¡Flores para ti! 🌸✨</h1>
+  <p>Creado con código especialmente para sacarte una sonrisa.</p>
+</body>
+</html>
