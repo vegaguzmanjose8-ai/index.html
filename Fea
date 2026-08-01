@@ -3,41 +3,159 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Un regalo para ti 🌸</title>
+  <title>Un regalo especial para ti 🌻✨</title>
+
+  <meta property="og:title" content="¡Un ramo de flores amarillas para ti! 🌻" />
+  <meta property="og:description" content="Abre este enlace para ver un detalle especial que preparé para ti." />
+  <meta property="og:image" content="https://images.unsplash.com/photo-1597848212624-a19eb35e2651?w=800" />
+
   <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
     body {
-      background-color: #fce4ec;
+      background: linear-gradient(135deg, #fffde7 0%, #fff9c4 100%);
+      min-height: 100vh;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      min-height: 100vh;
-      margin: 0;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    }
-    .bouquet {
+      font-family: 'Segoe UI', Roboto, sans-serif;
+      overflow: hidden;
       text-align: center;
-      font-size: 70px;
-      animation: bloom 2s ease-in-out infinite alternate;
+      padding: 20px;
     }
-    h1 {
-      color: #ad1457;
-      margin-top: 20px;
+
+    /* Flores cayendo */
+    .flower-falling {
+      position: absolute;
+      top: -50px;
       font-size: 24px;
+      animation: fall linear infinite;
+      user-select: none;
+      pointer-events: none;
+      z-index: 1;
     }
+
+    @keyframes fall {
+      0% {
+        transform: translateY(0) rotate(0deg);
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(105vh) rotate(360deg);
+        opacity: 0.2;
+      }
+    }
+
+    /* Tarjeta central */
+    .card {
+      background: rgba(255, 255, 255, 0.9);
+      padding: 30px 20px;
+      border-radius: 25px;
+      box-shadow: 0 10px 30px rgba(251, 192, 45, 0.3);
+      backdrop-filter: blur(5px);
+      z-index: 10;
+      max-width: 350px;
+      width: 100%;
+      border: 2px solid #fff59d;
+    }
+
+    .bouquet {
+      font-size: 80px;
+      animation: pulse 2s ease-in-out infinite;
+      margin-bottom: 10px;
+    }
+
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.1); }
+    }
+
+    h1 {
+      color: #f57f17;
+      font-size: 24px;
+      margin-bottom: 10px;
+    }
+
     p {
-      color: #880e4f;
+      color: #fbc02d;
       font-size: 16px;
+      color: #5d4037;
+      line-height: 1.4;
+      margin-bottom: 20px;
     }
-    @keyframes bloom {
-      0% { transform: scale(1) rotate(-2deg); }
-      100% { transform: scale(1.08) rotate(2deg); }
+
+    /* Botón de audio */
+    .music-btn {
+      background: linear-gradient(45deg, #fbc02d, #f57f17);
+      color: white;
+      border: none;
+      padding: 12px 24px;
+      font-size: 16px;
+      border-radius: 50px;
+      cursor: pointer;
+      box-shadow: 0 4px 15px rgba(245, 127, 23, 0.4);
+      transition: transform 0.2s;
+    }
+
+    .music-btn:active {
+      transform: scale(0.95);
     }
   </style>
 </head>
 <body>
-  <div class="bouquet">💐</div>
-  <h1>¡Flores para ti! 🌸✨</h1>
-  <p>Creado con código especialmente para sacarte una sonrisa.</p>
+
+  <div class="card">
+    <div class="bouquet">🌻</div>
+    <h1>¡Flores Amarillas! 💛</h1>
+    <p>Un detalle especial para iluminar tu día con mucho cariño.</p>
+    
+    <button class="music-btn" onclick="toggleMusic()">🎵 Toca para música 🎵</button>
+  </div>
+
+  <audio id="bg-music" loop preload="auto">
+    <source src="https://cdn.pixabay.com/download/audio/2022/05/27/audio_1808fbf07a.mp3?filename=sweet-piano-112181.mp3" type="audio/mpeg">
+  </audio>
+
+  <script>
+    // Crear lluvia de flores amarillas
+    const flowers = ['🌻', '🌼', '✨', '💛', '🌸'];
+    function createFlower() {
+      const flower = document.createElement('div');
+      flower.classList.add('flower-falling');
+      flower.innerText = flowers[Math.floor(Math.random() * flowers.length)];
+      flower.style.left = Math.random() * 100 + 'vw';
+      flower.style.animationDuration = Math.random() * 3 + 3 + 's';
+      flower.style.fontSize = Math.random() * 15 + 20 + 'px';
+      
+      document.body.appendChild(flower);
+
+      setTimeout(() => {
+        flower.remove();
+      }, 6000);
+    }
+
+    setInterval(createFlower, 300);
+
+    // Control de audio
+    const music = document.getElementById('bg-music');
+    let isPlaying = false;
+
+    function toggleMusic() {
+      const btn = document.querySelector('.music-btn');
+      if (!isPlaying) {
+        music.play();
+        btn.innerText = "⏸️ Pausar música";
+        isPlaying = true;
+      } else {
+        music.pause();
+        btn.innerText = "🎵 Toca para música 🎵";
+        isPlaying = false;
+      }
+    }
+  </script>
 </body>
 </html>
